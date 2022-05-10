@@ -9,6 +9,7 @@ export default class App extends React.Component {
           <li> walk the dog </li>
           <li> take out the trash</li>
           <li> Workout</li>
+          <li>is this working</li>
         </ul>
         <form>
           <input/>
