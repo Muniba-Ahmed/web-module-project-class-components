@@ -83,3 +83,9 @@ ul, form {
 .todo:hover {
   cursor: pointer;
 }
+
+li {
+  font-size: 14px;
+  margin-left: 10px;
+  list-style-type: circle;
+}
