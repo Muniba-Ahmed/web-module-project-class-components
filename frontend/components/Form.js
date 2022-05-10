@@ -11,7 +11,7 @@ export default class Form extends React.Component {
     e.preventDefault();
     // console.log("click add");
     console.log(this.props);
-    this.props.handleAdd("cooook");
+    this.props.handleAdd(this.state.input);
   };
 
   handleChange = (e) => {

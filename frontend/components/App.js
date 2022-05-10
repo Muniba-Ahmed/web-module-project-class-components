@@ -33,6 +33,27 @@ export default class App extends React.Component {
     };
   }
 
+  handleToggle = (clickedId) => {
+    //1. setState
+    //2.change todos
+    //3.find the todo that we clicked on
+    //4. flip the value of completed for that todo
+    //5. keep all other todos the same
+
+    this.setState({
+      ...this.state,
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === clickedId) {
+          return {
+            ...todo,
+            completed: !todo.completed,
+          };
+        }
+        return todo;
+      }),
+    });
+  };
+
   handleAdd = (name) => {
     //1.setState
     //2. change todos
@@ -51,7 +72,7 @@ export default class App extends React.Component {
     });
   };
 
-  handleClear = () => {
+  handleClear = (e) => {
     //1. setState
     //2. loop thru all todos, using filter
     //3.remove all todos that have checkmark === true
@@ -71,7 +92,11 @@ export default class App extends React.Component {
     return (
       <div>
         <h1>Munibas Todo's</h1>
-        <TodoList todos={todos} key={todos.id} />
+        <TodoList
+          todos={todos}
+          key={todos.id}
+          handleToggle={this.handleToggle}
+        />
         <Form handleAdd={this.handleAdd} />
         <button onClick={this.handleClear}> Clear </button>
       </div>
