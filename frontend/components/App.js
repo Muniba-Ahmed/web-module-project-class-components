@@ -1,5 +1,6 @@
 import React from "react";
-
+import ReactDOM from "react-dom";
+import Todo from "./Todo";
 import TodoList from "./TodoList";
 import Form from "./Form";
 
@@ -24,23 +25,55 @@ export default class App extends React.Component {
           completed: false,
         },
         {
-          name: "Workoutz",
+          name: "Dance break",
           id: 1528817084353,
-          completed: false,
+          completed: true,
         },
       ],
     };
   }
 
+  handleAdd = (name) => {
+    //1.setState
+    //2. change todos
+    //3. make a copy of todos
+    //4. Add a newTodo to the end of our todo list(push method?)
+
+    const newTodo = {
+      name: name,
+      id: Date.now(),
+      completed: false,
+    };
+
+    this.setState({
+      ...this.state,
+      todos: [...this.state.todos, newTodo],
+    });
+  };
+
+  handleClear = () => {
+    //1. setState
+    //2. loop thru all todos, using filter
+    //3.remove all todos that have checkmark === true
+    //4.save filtered todos to state.
+
+    this.setState = {
+      ...this.state,
+      todos: this.state.todos.filter((todo) => {
+        return !todo.completed;
+      }),
+    };
+  };
+
   render() {
     const { todos } = this.state;
-    console.log(todos);
+    // console.log(todos);
     return (
       <div>
-        <h1>Muniba's Todo's</h1>
-        <TodoList todos={todos} />
-        <Form />
-        <button> Clear </button>
+        <h1>Munibas Todo's</h1>
+        <TodoList todos={todos} key={todos.id} />
+        <Form handleAdd={this.handleAdd} />
+        <button onClick={this.handleClear}> Clear </button>
       </div>
     );
   }
